@@ -1,0 +1,327 @@
+//quadratic program
+import java.util.*;
+
+public class quad1
+{
+    public static void main(String[] args)
+    {
+        Scanner s =new Scanner(System.in);
+        System.out.println("enter values of a,b and c");
+        int a =s.nextInt();
+        int b =s.nextInt();
+        int c =s.nextInt();
+        System.out.println("the quadratic equation");
+        System.out.format("(%d*x^2)+(%d*x)+(%d)\n",a,b,c);
+        int d=(b*b)-(4*a*c);
+        if(d<1)
+        {
+        }
+        else if(d>1)
+        {
+            int root1=(-b+(int)Math.sqrt(d))/2*a;
+            int root2=(-b-(int)Math.sqrt(d))/2*a;
+            System.out.println("Roots are real and different = "+ root1 + ", "+ root2);
+        }
+        else
+        {
+            int root1=(-b+(int)Math.sqrt(d))/2*a;
+            int root2 = root1;
+            System.out.println("Roots are real and equal = "+ root1+ ", "+ root2);
+        }
+    }
+}
+
+
+
+
+
+import java.util.*;
+//non recursive fxn
+
+class fibo
+{
+    static void fibon(int n)
+    {
+        int c=0;
+        int a=0;
+        int b=1;
+        System.out.print("0\t1\t");
+        for(int i=0;i<n-2;i++)
+        {
+            c=a+b;
+            a=b;
+            b=c;
+            System.out.print(c+"\t");
+
+        }
+    }
+    public static void main(String[]args)
+    {
+        System.out.println("Enter the number of terms for the series");
+        Scanner s= new Scanner(System.in);
+        int n=s.nextInt();
+        fibon(n);
+    }
+}
+
+/* 
+//recursive
+
+class fibo
+{
+    static int fibon(int n)
+    {
+    if(n<=1)
+    {
+        return n;
+    }
+    return fibon(n-2)+fibon(n-1);
+    }
+
+    public static void main(String[]args)
+    {
+        System.out.println("Enter the number of terms for the series");
+        Scanner s= new Scanner(System.in);
+        int n=s.nextInt();
+        for(int i=0;i<n;i++)
+        {
+            System.out.print(fibon(i)+" ");
+        }
+    }
+}
+*/
+
+//string sort
+import java.util.*;
+
+class strsort
+{
+    void str()
+    {
+        int i,j;
+        Scanner s= new Scanner(System.in);
+        System.out.println("Enter the number of Strings");
+        int n=s.nextInt();
+        String[] str =new String[n];
+        System.out.println("enter the strings");
+        for(i=0;i<n;i++)
+        {
+            str[i] = new String(s.next());
+        }
+        for(i=0;i<n;i++)
+        {
+            for(j=i+1;j<n;j++)
+            {
+                if(str[i].compareTo(str[j])>0)
+                {
+                    String temp= str[j];
+                    str[j]=str[i];
+                    str[i]=temp;
+                }
+            }
+        }
+        System.out.println("the sorted strings");
+        for(i=0;i<n;i++)
+        {
+            System.out.println(str[i]);
+        }
+
+    }
+
+    public static void main(String[]args)
+    {
+        strsort obj = new strsort();
+        obj.str();
+    }
+}
+
+//prime numbers
+
+import java.util.*;
+
+class prime
+{
+    public static void main(String[] args)
+    {
+        System.out.println("enter the number");
+        Scanner s=new Scanner(System.in);
+        int n=s.nextInt();
+        for(int i=2;i<=n;i++)
+        {
+            int flag;
+            flag=0;
+            for(int j=2;j<n;j++)
+            {
+                if(i%j==0 && i!=j)
+                {
+                    flag=1;
+                }
+            }
+            if(flag==0)
+            {
+                System.out.println(i);
+            }
+        }
+
+    }
+
+}
+
+
+//palindrome
+
+import java.util.*;
+
+class palindrome
+{
+    public static void main(String[]args)
+    {
+        String str,rev="";
+        int i;
+        Scanner s=new Scanner(System.in);
+        System.out.println("enter the string ");
+        str=s.nextLine();
+        for(i=str.length()-1;i>=0;i--)
+        {
+            rev=rev+str.charAt(i);
+        }
+        if(rev.compareTo(str)==0)
+        {
+            System.out.println("its a palindrome");
+        }
+        else{
+            System.out.println("its not a palindrome");
+        }
+
+    }
+}
+
+
+//Matrix multiplication
+
+import java.util.*;
+
+class Matrix
+{
+    static void printmat(int c[][],int row,int col)
+    {
+        for(int i=0;i<row;i++)
+        {
+            for(int j=0;j<col;j++)
+            {
+                System.out.format("%d\t",c[i][j]);
+            }
+            System.out.println(" ");
+        }
+    }
+    static void matmul(int a[][],int arow,int acol,int b[][],int brow,int bcol)
+    {
+        System.out.println("given matrix 1");
+        printmat(a,arow,acol);
+        System.out.println("given matrix 2");
+        printmat(b,brow,bcol);
+        int c[][]=new int[arow][bcol];
+        if(arow!=bcol)
+        {
+            System.out.println("matrix multiplication not possible");
+            return;
+        }
+        for(int i=0;i<arow;i++)
+        {
+            for(int j=0;j<bcol;j++)
+            {
+                for(int k=0;k<arow;k++)
+                {
+                    c[i][j]+=a[i][k]*b[k][j];
+                }  
+            }
+        }
+        System.out.println("multiplied matrix");
+        printmat(c,arow,bcol);
+    
+    }
+    public static void main(String[] args)
+    {
+        int arow=3,acol=3,brow=3,bcol=3;
+        int a[][]={{1,2,3},{1,2,3},{1,2,3}};
+        int b[][]={{1,2,3},{1,2,3},{1,2,3}};
+        matmul(a,arow,acol,b,brow,bcol);
+    }
+}
+
+
+//electricity report
+
+import java.util.*;
+
+class electricitybill
+{
+    public static void main(String[] args)
+    {
+        double amt=0;
+        int cno,pr,cr,type;
+        String name;
+        Scanner s= new Scanner(System.in);
+        System.out.println("enter customer number");
+        cno=s.nextInt();
+        System.out.println("enter your name");
+        name=s.next();
+        System.out.println("enter your previous reading");
+        pr=s.nextInt();
+        System.out.println("enter your current reading");
+        cr=s.nextInt();
+        System.out.println("enter the type of cnnectiont1.Domestic\t2.Industrial");
+        type=s.nextInt();
+        double unit=cr-pr;
+        double dunit;
+        dunit=unit-100;
+
+        switch(type)
+        {
+            case 1:
+            if(unit<=0)
+            {
+                amt=unit*1;
+            }
+            
+            else if(dunit<=200 && dunit>=101)
+            {
+                amt=100+dunit*2.50;
+            }
+            
+            else if(dunit<=500 && dunit>=201)
+            {
+                amt=100+dunit*4;
+            }
+            
+            else
+            {
+                amt=100+dunit*6;
+            }
+            
+
+            case 2:
+            if(unit<=0)
+            {
+                amt=unit*2;
+            }
+            
+            else if(dunit<=200 && dunit>=101)
+            {
+                amt=100+dunit*4.50;
+            }
+            
+            else if(dunit<=500 && dunit>=201)
+            {
+                amt=100+dunit*6;
+            }
+            
+            else
+            {
+                amt=100+dunit*7;
+            }
+            
+        }
+        System.out.format("customer number:%d\nname:%s\nprevious reading:%d\ncurrent reading%d\nunit:%.2f\namount:%.2f",cno,name,pr,cr,unit,amt);
+    }
+}
